@@ -7,8 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "NetworkService.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>{
+    NetworkService *ns;
+    NSPasteboard *whichPboard;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 

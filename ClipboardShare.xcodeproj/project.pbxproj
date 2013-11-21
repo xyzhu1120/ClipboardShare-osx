@@ -18,6 +18,8 @@
 		709DD749183DF06E00455440 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 709DD728183DF06E00455440 /* Cocoa.framework */; };
 		709DD751183DF06E00455440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 709DD74F183DF06E00455440 /* InfoPlist.strings */; };
 		709DD753183DF06E00455440 /* ClipboardShareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 709DD752183DF06E00455440 /* ClipboardShareTests.m */; };
+		709DD75E183DFDB200455440 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 709DD75D183DFDB200455440 /* NetworkService.m */; };
+		709DD761183E633E00455440 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 709DD760183E633E00455440 /* Message.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 		709DD74E183DF06E00455440 /* ClipboardShareTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClipboardShareTests-Info.plist"; sourceTree = "<group>"; };
 		709DD750183DF06E00455440 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		709DD752183DF06E00455440 /* ClipboardShareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClipboardShareTests.m; sourceTree = "<group>"; };
+		709DD75C183DFDB200455440 /* NetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		709DD75D183DFDB200455440 /* NetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
+		709DD75F183E633E00455440 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		709DD760183E633E00455440 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 			children = (
 				709DD73A183DF06E00455440 /* AppDelegate.h */,
 				709DD73B183DF06E00455440 /* AppDelegate.m */,
+				709DD75F183E633E00455440 /* Message.h */,
+				709DD760183E633E00455440 /* Message.m */,
+				709DD75C183DFDB200455440 /* NetworkService.h */,
+				709DD75D183DFDB200455440 /* NetworkService.m */,
 				709DD73D183DF06E00455440 /* MainMenu.xib */,
 				709DD740183DF06E00455440 /* Images.xcassets */,
 				709DD72F183DF06E00455440 /* Supporting Files */,
@@ -253,6 +263,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				709DD73C183DF06E00455440 /* AppDelegate.m in Sources */,
+				709DD761183E633E00455440 /* Message.m in Sources */,
+				709DD75E183DFDB200455440 /* NetworkService.m in Sources */,
 				709DD735183DF06E00455440 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
