@@ -13,5 +13,13 @@
     NSString *_content;
 }
 
--(void)initWithRawData:(NSString*)data;
+-(Message *)initWithRawData:(NSString*)data;
+-(Message *)initFileRetMsg;
+-(BOOL) isTEXT;
+-(BOOL) isFILE;
+-(BOOL) isFILEREADY;
+-(NSString *)toString;
+-(uint8_t *)toUint8;
+//-(int) length;
+-(NSData*)toNSData;
 @end

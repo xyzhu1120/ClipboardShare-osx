@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NetworkService.h"
+#import "Message.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
-    NetworkService *ns;
+    NetworkService *_ns;
     NSPasteboard *whichPboard;
 }
+- (IBAction)getFile:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 

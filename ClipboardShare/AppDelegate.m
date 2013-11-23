@@ -13,7 +13,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    ns = [[NetworkService alloc]initWithIP:@"218.193.187.165" andPort:8885 anddelegate:self];
+    _ns = [[NetworkService alloc]initWithIP:@"218.193.187.165" andPort:8885 anddelegate:self];
     whichPboard = [NSPasteboard generalPasteboard];
 }
 
@@ -26,12 +26,33 @@
             unsigned int len = 0;
             len = [(NSInputStream *)stream read:buf maxLength:1024];
             NSString *s = [[NSString alloc]initWithBytes:buf length:len encoding:NSUTF8StringEncoding];
-            [whichPboard clearContents];
-            [whichPboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-            [whichPboard setString:s forType:NSStringPboardType];
+            Message *tmpmsg = [[Message alloc]initWithRawData:s];
+            if (tmpmsg.isTEXT) {
+                [whichPboard clearContents];
+                [whichPboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
+                [whichPboard setString:s forType:NSStringPboardType];
+            } else if(tmpmsg.isFILE){
+                //NSAlert *alert = [NSAlert alertWithMessageText:@"FIile" defaultButton:@"Get it" alternateButton:@"Ignore" otherButton:nil informativeTextWithFormat:@"Nothing"];
+                //[alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(alertEnded:code:context:) contextInfo:nil];
+                
+                //NSRunAlertPanel(@"a FILE", @"FILE", @"Get it", @"ignore", nil);
+                NSUserNotification *notification = [[NSUserNotification alloc]init];
+                
+                notification.title = @"File";
+                notification.informativeText = @"FILE";
+                notification.soundName = NSUserNotificationDefaultSoundName;
+                
+                notification.hasActionButton = YES;
+                notification.actionButtonTitle = @"OK";
+                notification.otherButtonTitle = @"Cancel";
+                
+                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+            } else if ( [tmpmsg isFILEREADY] ){
+                [_ns receiveFile];
+            }
             NSLog(s);
-            //NSAlert *alert = [NSAlert alertWithMessageText:@"FIile" defaultButton:@"Get it" alternateButton:@"Ignore" otherButton:nil informativeTextWithFormat:@"Nothing"];
-            //[alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(alertEnded:code:context:) contextInfo:nil];
+
             break;
         }
         case NSStreamEventEndEncountered:
@@ -49,4 +70,15 @@
     NSLog(@"Receive");
 }
 
+-(void) userNotificationCenter:(NSUserNotificationCenter *)cneter didActivateNotification:(NSUserNotification *)notification{
+    NSLog(@"click");
+    [_window makeKeyAndOrderFront:self];
+}
+
+- (IBAction)getFile:(id)sender {
+    NSLog(@"try to retrive the file");
+    Message *msg = [[Message alloc]initFileRetMsg];
+    [_ns sendMessage:msg];
+    
+}
 @end
